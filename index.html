@@ -7,11 +7,14 @@
 	<title>Map Test</title>
 </head>
 <body>
-	<button id = "find-me">Show my location</button><br/>
+	<button id = "locate">Enable</button><br/>
+	<button id = "stop">Stop</button><br/>
 	<p id = "status"></p>
 	<a id = "map-link" target="_blank"></a>
 	<script>
-		function geoFindMe() {
+		let watch = null;
+
+		function enableLocation() {
 			const status = document.querySelector('#status');
 			const mapLink = document.querySelector('#map-link');
 
@@ -35,13 +38,23 @@
 				status.textContent = 'Geolocation is not supported by your browser';
 			} else {
 				status.textContent = 'Locating…';
-				navigator.geolocation.getCurrentPosition(success, error, {
+				watch = navigator.geolocation.watchPosition(success, error, {
 					enableHighAccuracy: true,
 				});
 			}
 		}
 
-		document.querySelector('#find-me').addEventListener('click', geoFindMe);
+		function disableLocation() {
+			if (!navigator.geolocation) {
+				status.textContent = 'Geolocation is not supported by your browser';
+			} else {
+				status.textContent = 'Stopping location tracking…';
+				navigator.geolocation.clearWatch(watch);
+			}
+		}
+
+		document.querySelector('#locate').addEventListener('click', enableLocation);
+		document.querySelector('#stop').addEventListener('click', disableLocation);
 	</script>
 </body>
 </html>
