@@ -45,16 +45,22 @@
 		}
 
 		function disableLocation() {
+			const status = document.querySelector('#status');
+			const mapLink = document.querySelector('#map-link');
+
 			if (!navigator.geolocation) {
 				status.textContent = 'Geolocation is not supported by your browser';
 			} else {
 				status.textContent = 'Stopping location tracking…';
 				navigator.geolocation.clearWatch(watch);
 			}
+
+			mapLink.href = '';
+			mapLink.textContent = '';
 		}
 
 		document.querySelector('#locate').addEventListener('click', enableLocation);
 		document.querySelector('#stop').addEventListener('click', disableLocation);
 	</script>
 </body>
-</html>
+</html>	
