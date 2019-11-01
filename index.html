@@ -13,6 +13,7 @@
 	<a id = "map-link" target="_blank"></a>
 	<script>
 		let watch = null;
+		let counter = 0;
 
 		function enableLocation() {
 			const status = document.querySelector('#status');
@@ -26,7 +27,7 @@
 
 				status.textContent = '';
 				mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-				mapLink.textContent = `Geolocation: Latitude: ${latitude} °, Longitude: ${longitude} °, Altitude: ${altitude}, Accuracy: ${accuracy}, Altitude Accuracy: ${altitudeAccuracy}, Heading: ${heading}, Speed: ${speed}`;
+				mapLink.textContent = `${counter} Geolocation: Latitude: ${latitude} °, Longitude: ${longitude} °, Altitude: ${altitude}, Accuracy: ${accuracy}, Altitude Accuracy: ${altitudeAccuracy}, Heading: ${heading}, Speed: ${speed}`;
 			}
 
 			function error() {
