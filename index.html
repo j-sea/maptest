@@ -38,6 +38,8 @@
 			} else {
 				status.textContent = 'Locating…';
 				watch = navigator.geolocation.watchPosition(success, error, {
+					timeout: Infinity,
+					maximumAge: 0,
 					enableHighAccuracy: true,
 				});
 			}
