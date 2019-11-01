@@ -22,12 +22,11 @@
 			mapLink.textContent = '';
 
 			function success(position) {
-				const latitude  = position.coords.latitude;
-				const longitude = position.coords.longitude;
+				const {latitude, longitude, altitude, accuracy, altitudeAccuracy, heading, speed} = position.coords;
 
 				status.textContent = '';
 				mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-				mapLink.textContent = `Geolocation: Latitude: ${latitude} °, Longitude: ${longitude} °`;
+				mapLink.textContent = `Geolocation: Latitude: ${latitude} °, Longitude: ${longitude} °, Altitude: ${altitude}, Accuracy: ${accuracy}, Altitude Accuracy: ${altitudeAccuracy}, Heading: ${heading}, Speed: ${speed}`;
 			}
 
 			function error() {
