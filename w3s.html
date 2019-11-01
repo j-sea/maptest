@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
 <body>
-
+	
 <p>Click the button to get your coordinates.</p>
 
 <button onclick="getLocation()">Try It</button>
@@ -20,8 +26,7 @@ function getLocation() {
 }
 
 function showPosition(position) {
-    x.innerHTML="Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    x.innerHTML=`<br><br>Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}, Altitude: ${position.coords.altitude}, Heading: ${position.coords.heading}, Speed: ${position.coords.speed}${x.innerHTML}`;
 }
 </script>
 
