@@ -18,8 +18,8 @@
 <p>Click the button to get your coordinates.</p>
 
 <button onclick="getLocation()">Try It</button>
-<div id="basicMap"></div>
 <p id="demo"></p>
+<div id="basicMap"></div>
 
 <script src="OpenLayers.js"></script>
 <script>
@@ -32,7 +32,7 @@ var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from
 var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
 var position       = new OpenLayers.LonLat(lon, lat).transform( fromProjection, toProjection);
 
-var map = new OpenLayers.Map("basicMap");
+map = new OpenLayers.Map("basicMap");
 var mapnik         = new OpenLayers.Layer.OSM();
 map.addLayer(mapnik);
 
@@ -55,7 +55,8 @@ function getLocation() {
 
 function showPosition(position) {
 	var newPos = new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform( fromProjection, toProjection);
-	marker.moveTo(newPos);
+	// marker.moveTo(newPos);
+	map.setCenter(newPos, zoom);
 
 	x.innerHTML=`<br><br>Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}, Accuracy: ${position.coords.accuracy}, Altitude: ${position.coords.altitude}, Altitude Accuracy: ${position.coords.altitudeAccuracy}, Heading: ${position.coords.heading}, Speed: ${position.coords.speed}${x.innerHTML}`;
 }
